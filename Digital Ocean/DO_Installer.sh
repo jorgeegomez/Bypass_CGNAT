@@ -92,9 +92,14 @@ if [ $SERVERTYPE -eq 1 ]; then
   echo -e "\e[33mThe following networks have been found on your system.  Please use a different network for your Wireguard Server & Client\e[0m"
   echo $LOCALIPS
   echo ""
-  read -p $'\e[36mWireguard Server IP \e[0m[\e[32m10.1.0.1\e[0m]: ' WG_SERVER_IP
 fi
-WG_SERVER_IP=${WG_SERVER_IP:-10.1.0.1}
+
+if [ $4 ]; then
+  WG_SERVER_IP=$4
+else
+  read -p $'\e[36mWireguard Server IP \e[0m[\e[32m10.1.0.2\e[0m]: ' WG_SERVER_IP
+  WG_SERVER_IP=${WG_SERVER_IP:-10.1.0.1}
+fi
 
 if [ $5 ]; then
   WG_CLIENT_IP=$5
